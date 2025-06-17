@@ -260,7 +260,7 @@ const windSpeedElement = document.getElementById('wind-speed');
 const weatherErrorElement = document.getElementById('weather-error');
 const weatherIconElement = document.getElementById('weather-icon');
 
-const OPENWEATHER_API_KEY = 'b3b255b9dbf14c07df5fa4994d9c07c4'; // Your OpenWeatherMap API Key
+const OPENWEATHER_API_KEY = '***REDACTED_OPENWEATHER_KEY***'; // Your OpenWeatherMap API Key
 
 async function fetchWeather() {
     const city = cityInput.value.trim();

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Web Development Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header>
+        <!-- Updated: Added a div for animation container and span for coloring -->
+        <div class="header-content">
+            <h1> <span class="colorful-text"> Welcome to My Web Page</span>😊</h1>
+            <p class="header-subtitle">Demonstrating Responsive Design, Interactive Quiz, and API Weather Data Fetching.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="responsive-section">
+            <h2><B>1. Responsive Design in Action</B></h2>
+            <p>This section highlights how modern web pages adapt to various screen sizes, from mobile phones to large desktop monitors. It ensures a consistent and user-friendly experience across all devices.</p>
+            <div class="responsive-box">
+                <p><B>Hello Everyone! My name is Bhargav Ram.</B></p>
+                <p>I designed this using HTML, CSS, js. It really giving the experience towards creating dynamic web pages. </p>
+            </div>          
+        </section>
+        <section id="quiz-section">
+            <h2><B>2. Interactive JavaScript Quiz</B></h2>
+            <div class="quiz-container">
+                <!-- NEW: Name Entry Screen - Initially Visible -->
+                <div id="name-entry-screen" class="name-entry-screen">
+                    <h3>What's Your Name?</h3>
+                    <p>Enter your name to start the quiz challenge!</p>
+                    <input type="text" id="user-name-input" placeholder="Your Name">
+                    <button id="submit-name-btn" class="submit-name-btn" disabled>Submit</button>
+                </div>
+
+                <!-- NEW: Quiz Start Screen - Initially Hidden -->
+                <div id="quiz-start-screen" class="quiz-start-screen" style="display: none;">
+                    <h3>Ready for the Ultimate Current Affairs Challenge?</h3>
+                    <p>Test your knowledge on daily situations and key facts!</p>
+                    <button id="start-quiz-btn" class="start-quiz-btn">Start Quiz</button>
+                </div>
+
+                <!-- Existing Quiz Elements - Initially Hidden -->
+                <h3 id="question" style="display: none;">Loading Quiz...</h3>
+                <div id="options" class="options-container" style="display: none;">
+                    <!-- Option buttons will be dynamically added here by JavaScript -->
+                </div>
+                <div class="quiz-controls-area" style="display: none;">
+                    <button id="next-btn" disabled>Next Question</button> 
+                    <div id="quiz-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="api-section">
+            <h2><B>3. Fetching Data from a Weather API</B></h2>
+            <div class="api-data-container">
+                <h3>Get Weather Information:</h3>
+                <div class="weather-input">
+                    <input type="text" id="city-input" placeholder="Enter city name (e.g., London, New York)">
+                    <button id="fetch-weather-btn">Get Weather</button>
+                </div>
+                <div id="weather-info">
+                    <p id="city-name"></p>
+                    <img id="weather-icon" src="" alt="Weather icon" class="weather-icon">
+                    <p id="temperature"></p>
+                    <p id="description"></p>
+                    <p id="humidity"></p>
+                    <p id="wind-speed"></p>
+                    <p id="weather-error"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Full-Stack Task. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>

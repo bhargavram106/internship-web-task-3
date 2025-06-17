@@ -1,0 +1,743 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Applied to body for full webpage gradient */
+    background: linear-gradient(to bottom right, #e0f2f7, #f7fbfd); /* Subtle light blue to off-white gradient */
+    color: #333;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column; /* Allows footer to stick to bottom if main content is short */
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden; /* Hide overflow for animations */
+    /* NEW: Add a subtle animation to the header itself */
+    animation: headerFadeIn 1s ease-out forwards;
+}
+
+/* NEW: Header content container for animation */
+.header-content {
+    animation: slideInFromTop 0.8s ease-out forwards; /* Slide in effect for the content */
+}
+
+header h1 {
+    /* Existing h1 styles */
+    font-size: 2.8em; /* Adjusted to your latest value */
+    margin-bottom: 10px;
+    /* NEW: Animation for the main heading */
+    animation: fadeInFromLeft 1s ease-out forwards;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4); /* Stronger shadow for pop */
+}
+
+/* NEW: Colorful span inside heading */
+.colorful-text {
+    background: linear-gradient(45deg, #FFD700, #FF6F00, #dc3545); /* Gold, Orange, Red gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback for browsers not supporting background-clip */
+    font-weight: bold; /* Make it stand out more */
+    text-shadow: none; /* Remove default text-shadow to see gradient clearly */
+}
+
+.header-subtitle {
+    font-size: 1.2em;
+    opacity: 0; /* Hidden initially for animation */
+    animation: fadeInFromRight 1.2s ease-out forwards 0.3s; /* Delay its animation */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Subtler shadow for subtitle */
+}
+
+/* Keyframe Animations */
+@keyframes headerFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInFromLeft {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInFromRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    /* Changed to transparent so body's gradient can be seen */
+    background-color: transparent; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex-grow: 1; /* Allows main to take up available space */
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #68e9b5; /* Sections retain their light background */
+}
+
+h2 {
+    color: #007bff;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size:28px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+    margin-top: 30px; /* Adjusted margin-top for spacing */
+    width: 100%; /* Ensure footer spans full width */
+}
+
+/* 1. Responsive Design Section Styling */
+.responsive-box {
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px; /* Default desktop font size */
+    margin-bottom: 20px;
+}
+
+/* Media Queries for Responsive Design */
+/* Small devices (phones, 600px and below) */
+@media only screen and (max-width: 600px) {
+    /* Adjusted header styles for small screens, animations removed for performance */
+    header h1 {
+        font-size: 1.8em; /* Adjusted for smaller screens */
+        animation: none; /* Disable complex animations for performance on small screens */
+    }
+    .header-subtitle {
+        font-size: 1em; /* Adjusted for smaller screens */
+        animation: none; /* Disable complex animations */
+        opacity: 1; /* Ensure visible if animation is off */
+    }
+    .colorful-text {
+        font-weight: normal; /* Less emphasis on small screens */
+    }
+
+    main {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    /* Original h1 style, will be overridden by header h1 if within header */
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .responsive-box {
+        font-size: 14px; /* Smaller font for phones */
+        padding: 15px;
+        background-color: #dc3545; /* Different color for phones */
+    }
+
+    /* Adjust quiz elements for small screens if needed */
+    .quiz-container {
+        height: 280px; /* Further adjusted height for smaller screens to fit content */
+        min-height: 250px;
+        aspect-ratio: auto; /* Allow height to be explicit */
+        margin-bottom: 50px; /* Increased margin for small screens to push result down */
+    }
+
+    #question {
+        font-size: clamp(0.7em, 3.5vw, 1em); /* Adjusted font size for small screens */
+        top: 10%; /* Fine-tuned */
+        height: 18%; /* Fine-tuned */
+        left: 10%;
+        width: 80%;
+        padding: 4px; /* Reduced padding */
+    }
+
+    .options-container {
+        grid-template-columns: 1fr; /* Stack options vertically on small screens */
+        top: 32%; /* Fine-tuned */
+        left: 8%;
+        width: 84%;
+        height: 60%; /* More height for stacked options */
+        gap: 5px; /* Smaller gap */
+    }
+
+    .options-container button {
+        padding: 5px 8px; /* Smaller padding */
+        font-size: clamp(0.7em, 3vw, 0.75em); /* Adjusted font size for small screens */
+        height: 100%; /* Ensure they fill available height in grid cell */
+    }
+
+    /* Specific adjustment for quiz result on small screens */
+    #quiz-result {
+        font-size: 1.6em; /* Smaller font for result on phones to reduce overlap */
+        padding: 10px 15px; /* Slightly reduced padding */
+    }
+
+    .quiz-start-screen h3, .name-entry-screen h3 {
+        font-size: 1.5em;
+    }
+
+    .quiz-start-screen p, .name-entry-screen p {
+        font-size: 0.9em;
+    }
+
+    .start-quiz-btn, .submit-name-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .name-entry-screen input {
+        padding: 8px;
+        font-size: 0.9em;
+        max-width: 80%;
+    }
+}
+
+
+/* Medium devices (tablets, 601px to 992px) */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    /* Adjusted header styles for tablet screens, animations removed for performance */
+    header h1 {
+        font-size: 2.2em; /* Adjusted for tablets */
+        animation: none; /* Disable complex animations for performance on small screens */
+    }
+    .header-subtitle {
+        font-size: 1.1em; /* Adjusted for tablets */
+        animation: none; /* Disable complex animations */
+        opacity: 1; /* Ensure visible if animation is off */
+    }
+    main {
+        margin: 15px auto;
+        padding: 15px;
+    }
+
+    /* Original h1 style, will be overridden by header h1 if within header */
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .responsive-box {
+        font-size: 16px; /* Medium font for tablets */
+        padding: 18px;
+        background-color: #ffc107; /* Different color for tablets */
+    }
+
+    /* Adjust quiz elements for medium screens */
+    .quiz-container {
+        height: 380px; /* Adjusted height */
+        min-height: 350px;
+        aspect-ratio: auto; /* Allow height to be explicit */
+        margin-bottom: 60px; /* Increased margin for tablets to push result down */
+    }
+
+    #question {
+        font-size: clamp(1em, 3.5vw, 1.1em); /* Adjusted font size for tablet */
+        top: 10%; /* Adjusted */
+        height: 18%;
+        left: 10%;
+        width: 80%;
+        padding: 8px;
+    }
+
+    .options-container {
+        grid-template-columns: 1fr 1fr;
+        top: 30%; /* Adjusted */
+        left: 8%;
+        width: 84%;
+        height: 60%;
+        gap: 10px; /* Adjusted */
+    }
+
+    .options-container button {
+        padding: 8px 12px;
+        font-size: clamp(0.8em, 2.5vw, 0.9em); /* Adjusted font size for tablet */
+    }
+    
+    .quiz-start-screen h3, .name-entry-screen h3 {
+        font-size: 1.8em;
+    }
+    .quiz-start-screen p, .name-entry-screen p {
+        font-size: 1em;
+    }
+    .start-quiz-btn, .submit-name-btn {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    .name-entry-screen input {
+        padding: 10px;
+        font-size: 1em;
+        max-width: 70%;
+    }
+}
+
+
+/* 2. Interactive Quiz Section Styling (Desktop/Large Screens) */
+.quiz-container {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    height: 337.5px; /* 16:9 aspect ratio */
+    min-height: 250px;
+    margin: 25px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(36, 42, 39, 0.2);
+    margin-bottom: 90px; 
+
+    background-image: url("image2/quiz 2.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* NEW: Name Entry Screen Styling */
+.name-entry-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Initially flex */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker overlay for focus */
+    border-radius: 8px;
+    z-index: 20; /* Higher z-index to be on top of start screen if both are briefly visible */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.name-entry-screen h3 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: #fff; 
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.name-entry-screen p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #eee;
+    max-width: 80%;
+}
+
+.name-entry-screen input {
+    width: 70%;
+    max-width: 300px;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    border: 2px solid #00f0ff; /* Neon blue border */
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
+    color: #fff;
+    font-size: 1.1em;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6); /* Neon glow */
+    transition: all 0.3s ease;
+}
+
+.name-entry-screen input:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 5px rgba(255,255,255,0.4);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.name-entry-screen input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.submit-name-btn {
+    background: linear-gradient(45deg, #FF6F00, #FFD700); /* Orange to Gold gradient */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 111, 0, 0.7), 0 5px 10px rgba(0,0,0,0.4);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.submit-name-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #e65100, #ffa000);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 111, 0, 0.9), 0 7px 15px rgba(0,0,0,0.6);
+}
+
+.submit-name-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: linear-gradient(45deg, #757575, #9e9e9e); /* Greyed out for disabled */
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* Quiz Start Screen Styling (from previous update, now initially hidden) */
+.quiz-start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Will be set to flex by JS */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+    border-radius: 8px;
+    z-index: 15; /* Ensure it's above other elements but below name-entry-screen */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.quiz-start-screen h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #fff; 
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.quiz-start-screen p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #eee;
+    max-width: 80%;
+}
+
+.start-quiz-btn {
+    background: linear-gradient(45deg, #28a745, #00c853); /* Green gradient for start button */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.7), 0 5px 10px rgba(0,0,0,0.4);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.start-quiz-btn:hover {
+    background: linear-gradient(45deg, #218838, #009944);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 30px rgba(40, 167, 69, 0.9), 0 7px 15px rgba(0,0,0,0.6);
+}
+
+
+/* Positioning for Quiz Elements */
+#question {
+    position: absolute;
+    top: 9%;
+    left: 20%;
+    width: 65%;
+    height: 22%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: clamp(1em, 2vw, 1.2em);
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255,255,255,0.5);
+    box-sizing: border-box;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 5; 
+}
+
+
+.options-container {
+    position: absolute;
+    top: 35%;
+    left: 11%;
+    width: 78%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-items: center;
+    z-index: 7; 
+}
+
+
+/* Improved button styling */
+.options-container button {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(200, 200, 200, 0.12)); 
+    color: #fff;
+    border: 2px solid #66ffff; 
+    padding: 8px 12px;
+    border-radius: 12px; 
+    cursor: pointer;
+    font-size: clamp(0.8em, 1.5vw, 0.95em);
+    font-weight: bold;
+    transition: all 0.3s ease; 
+    width: 95%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(102, 255, 255, 0.7), 0 3px 8px rgba(0,0,0,0.5); 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255,255,255,0.6);
+    box-sizing: border-box;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.options-container button:hover:not(:disabled) {
+    background: linear-gradient(145deg, rgba(102, 255, 255, 0.3), rgba(0, 240, 255, 0.25)); 
+    border-color: #00ffff;
+    transform: scale(1.03) translateY(-2px); 
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 5px 12px rgba(0,0,0,0.6);
+}
+
+
+.options-container button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: rgba(206, 195, 195, 0.08); 
+    border-color: rgba(218, 231, 232, 0.2);
+    box-shadow: none;
+    transform: none; 
+}
+
+/* User selected option (Gold) */
+.options-container button.selected {
+    border: 3px solid #FFD700; 
+    background: linear-gradient(145deg, rgba(255, 215, 0, 0.4), rgba(200, 160, 0, 0.3)); 
+    transform: scale(1.04);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 3px 10px rgba(0,0,0,0.6);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9), 0 0 15px #FFD700; 
+}
+
+/* Correct answer highlight (Vibrant Green) */
+.options-container button.correct-answer {
+    background: linear-gradient(145deg, rgba(76, 175, 80, 0.6), rgba(40, 167, 69, 0.5)); 
+    border-color: #4CAF50; 
+    box-shadow: 0 0 18px rgba(76, 175, 80, 0.9), 0 3px 8px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9), 0 0 15px #4CAF50; 
+}
+
+/* Incorrect answer highlight (Vibrant Red) */
+.options-container button.incorrect-answer {
+    background: linear-gradient(145deg, rgba(244, 67, 54, 0.6), rgba(220, 53, 69, 0.5)); 
+    border-color: #F44336; 
+    box-shadow: 0 0 18px rgba(244, 67, 54, 0.9), 0 3px 8px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9), 0 0 15px #F44336; 
+}
+
+
+/* Container for the Next button and Quiz Result */
+.quiz-controls-area {
+    position: absolute;
+    bottom: 8%; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 10; 
+}
+
+#next-btn {
+    background: linear-gradient(45deg, #007bff, #00c853); 
+    color: white;
+    border: none;
+    padding: 14px 30px; 
+    border-radius: 10px; 
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    width: fit-content;
+    min-width: 200px; 
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.6), 0 6px 15px rgba(0,0,0,0.4); 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    position: static; 
+    transform: none; 
+}
+
+
+#next-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #0056b3, #00a846); 
+    transform: scale(1.08) translateY(-3px); 
+    box-shadow: 0 0 35px rgba(0, 123, 255, 0.9), 0 9px 20px rgba(0,0,0,0.6);
+}
+
+
+#next-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: linear-gradient(45deg, #6c757d, #adb5bd); 
+    box-shadow: none;
+    transform: none;
+}
+
+
+#quiz-result {
+    text-align: center;
+    font-size: 2.2em; 
+    font-weight: bold;
+    color: #fff; 
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.7), 0 0 40px #00FFFF; 
+    background-color: rgb(11, 36, 54); 
+    padding: 15px 25px; 
+    border-radius: 12px; 
+    max-width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    position: static;
+    display: none; 
+    z-index: 12; 
+}
+
+/* Styling for the centered restart button */
+.restart-button-centered {
+    background: linear-gradient(45deg, #ffc107, #ff9800); 
+    color: white;
+    padding: 16px 35px; 
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    margin-top: 25px; 
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.8), 0 7px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    position: static; 
+    transform: none; 
+    z-index: 20; 
+    white-space: nowrap;
+}
+
+.restart-button-centered:hover {
+    background: linear-gradient(45deg, #e0a800, #fb8c00); 
+    box-shadow: 0 0 30px rgba(255, 193, 7, 1), 0 10px 20px rgba(0,0,0,0.6);
+    transform: scale(1.08) translateY(-4px);
+}
+
+
+/* 3. API Data Section Styling */
+.api-data-container {
+    background-color: #d1ecf1;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    background-image: url("images/Gemini_Generated_Image_ve8trhve8trhve8t.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.api-data-container h3 {
+    color: #0c5460;
+    margin-bottom: 15px;
+}
+
+
+.weather-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+.weather-input input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+
+.weather-input button {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+
+.weather-input button:hover {
+    background-color: #138496;
+}
+
+
+#weather-info p {
+    font-size: 1.1em;
+    margin: 8px 0;
+    color: #0f6674;
+}
+
+
+#weather-error {
+    color: #dc3545; 
+    font-weight: bold;
+}
+
+
+/* Styling for the weather icon */
+.weather-icon {
+    width: 80px;
+    height: 80px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
